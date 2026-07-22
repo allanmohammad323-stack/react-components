@@ -4,6 +4,7 @@ import { HomeBtn } from './homeBtn';
 import { ProductCard } from '../product-card/ProductCard'
 import { Profile ,User } from '../profile/profile'
 import { ProductsData } from '../product-card/ProductCard'
+import { Filter } from '../product-card/filter.js'
 import { Counter , Input , Like , DarkTheme } from './training/usestateex'
 class ClassComponent {
     // constructor

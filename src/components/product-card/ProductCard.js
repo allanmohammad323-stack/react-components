@@ -1,16 +1,17 @@
 import './product-card-style.css';
 import productsData from '../../data/productsData.json';
 import { useState } from 'react';
-const productCount=(count)=>{
+import { Filter } from './filter';
+const productCount = (count) => {
   count--;
-  
+
   return count;
 }
 export const ProductCard = (
-  { title, description, price, image, onClick, status,count }
+  { title, description, price, image, onClick, status, count }
 ) => {
-  let [currentCount,updateCount] = useState(count);
-  let [displayDescription,setDisplayDescription] = useState(false);
+  let [currentCount, updateCount] = useState(count);
+  let [displayDescription, setDisplayDescription] = useState(false);
   return /*status == 'Available' ? */(
     <div className="product-card bg-gradient-to-r
   from-indigo-500
@@ -22,48 +23,53 @@ export const ProductCard = (
   ">
       <h1 className="product-card-title">{title}</h1>
       <img src={image} alt="Product" />
-      <button onClick={() =>setDisplayDescription((prev)=>!prev)}>
+      <button onClick={() => setDisplayDescription((prev) => !prev)}>
         {displayDescription ? 'Hide Description' : 'Show Description'}
       </button>
-  
+
       {displayDescription && <p className="product-card-description">{description}</p>}
-     {currentCount > 0 && <button className="product-card-button" onClick={()=>{
-      onClick();
-      updateCount(productCount(currentCount));
+      {currentCount > 0 && <button className="product-card-button" onClick={() => {
+        onClick();
+        updateCount(productCount(currentCount));
       }}>
-       ${price}
+        ${price}
       </button>}
-      
+
       {
-        currentCount > 0 && <p style={{    marginTop: 'auto', color:'black'}}>Items available: {currentCount}</p>
+        currentCount > 0 && <p style={{ marginTop: 'auto', color: 'black' }}>Items available: {currentCount}</p>
       }
-      <p style={{    marginTop: 'auto', color: currentCount > 0 ? 'green' : 'red'}}>{currentCount > 0 ? 'Available' : 'Sold Out'}</p>
+      <p style={{ marginTop: 'auto', color: currentCount > 0 ? 'green' : 'red' }}>{currentCount > 0 ? 'Available' : 'Sold Out'}</p>
     </div>
   ) /*: null*/;
 }
 
 const handleClick = (product) => {
-      alert(`Product ${product.title}, Price: $${product.price}`);
-    };
+  alert(`Product ${product.title}, Price: $${product.price}`);
+};
 
-export  function ProductsData({style}){
-    return (
-        <div style={style}>
-            {
+export function ProductsData({ style }) {
+  return (
+    <>
+    
+    <div style={style}>
+      
+      {
+
                 productsData.map(product => (
-                    <ProductCard
-                        key={product.id}
-                        title={product.title}
-                        description={product.description}
-                        price={product.price}
-                        image={product.image}
-                        onClick={()=>handleClick(product)}
-                        status={product.status}
-                        count={product.count}
-                    />
-                ))
+      <ProductCard
+        key={product.id}
+        title={product.title}
+        description={product.description}
+        price={product.price}
+        image={product.image}
+        onClick={() => handleClick(product)}
+        status={product.status}
+        count={product.count}
+      />
+      ))
             }
-        </div>
-    );
+    </div>
+    </>
+  );
 }
 
