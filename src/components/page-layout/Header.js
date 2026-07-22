@@ -5,16 +5,22 @@ const style = {
     padding: '10px',
     borderRadius: '5px',
     margin: '10px',
-    cursor: 'pointer'
-
+    cursor: 'pointer',
+   display: 'flex',
+   top: '0',
+  textAlign: 'center',
+  justifyContent: 'center'
 }
+
+
+
 //******** */
 export function Header() {
     return (
         <header className="Header">
-            <span style={style}>Home</span>
-            <span style={style}>About</span>
-            <span style={style}>Contact US</span>
+            <span style={style} {...{onClick: () => {console.log("home");}}}>Home</span>
+            <span style={style} {...{onClick: () => {console.log("about");}}}>About</span>
+            <span style={style} {...{onClick: () => {console.log("contact");}}}>Contact US</span>
         </header>
     )
 }
